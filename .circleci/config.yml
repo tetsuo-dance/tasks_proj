@@ -16,7 +16,6 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            mkdir -p /home/circleci/tasks_db
             pip install .
       - save_cache:
           paths:
