@@ -21,7 +21,7 @@ class TasksDB_TinyDB():  # noqa : E801
         """Add a task dict to db."""
         task_id = self._db.insert(task)
         task['id'] = task_id
-        self._db.update(task, doc_id=[task_id])
+        self._db.update(task, doc_ids=[task_id])
         return task_id
 
     def get(self, task_id):  # type (int) -> dict
@@ -41,11 +41,11 @@ class TasksDB_TinyDB():  # noqa : E801
 
     def update(self, task_id, task):  # type (int, dict) -> ()
         """Modify task in db with given task_id."""
-        self._db.update(task, doc_id=[task_id])
+        self._db.update(task, doc_ids=[task_id])
 
     def delete(self, task_id):  # type (int) -> ()
         """Remove a task from db with given task_id."""
-        self._db.remove(doc_id=[task_id])
+        self._db.remove(doc_ids=[task_id])
 
     def delete_all(self):
         """Remove all tasks from db."""
