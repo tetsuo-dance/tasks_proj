@@ -54,7 +54,7 @@ class TasksDB_TinyDB():  # noqa : E801
     def unique_id(self):  # type () -> int
         """Return an integer that does not exist in the db."""
         i = 1
-        while self._db.contains(doc_id=[i]):
+        while self._db.contains(doc_id=i):
             i += 1
         return i
 
