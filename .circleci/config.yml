@@ -16,7 +16,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            mkdir ~/tasksdb/
+            mkdir ~/tasks_db/
             pip install .
       - save_cache:
           paths:
