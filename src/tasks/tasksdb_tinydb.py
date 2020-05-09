@@ -49,7 +49,7 @@ class TasksDB_TinyDB():  # noqa : E801
 
     def delete_all(self):
         """Remove all tasks from db."""
-        self._db.purge()
+        self._db.truncate()
 
     def unique_id(self):  # type () -> int
         """Return an integer that does not exist in the db."""
