@@ -21,12 +21,12 @@ class TasksDB_TinyDB():  # noqa : E801
         """Add a task dict to db."""
         task_id = self._db.insert(task)
         task['id'] = task_id
-        self._db.update(task, eids=[task_id])
+        self._db.update(task, doc_id=[task_id])
         return task_id
 
     def get(self, task_id):  # type (int) -> dict
         """Return a task dict with matching id."""
-        return self._db.get(eid=task_id)
+        return self._db.get(doc_id=task_id)
 
     def list_tasks(self, owner=None):  # type (str) -> list[dict]
         """Return list of tasks."""
@@ -41,11 +41,11 @@ class TasksDB_TinyDB():  # noqa : E801
 
     def update(self, task_id, task):  # type (int, dict) -> ()
         """Modify task in db with given task_id."""
-        self._db.update(task, eids=[task_id])
+        self._db.update(task, doc_id=[task_id])
 
     def delete(self, task_id):  # type (int) -> ()
         """Remove a task from db with given task_id."""
-        self._db.remove(eids=[task_id])
+        self._db.remove(doc_id=[task_id])
 
     def delete_all(self):
         """Remove all tasks from db."""
@@ -54,7 +54,7 @@ class TasksDB_TinyDB():  # noqa : E801
     def unique_id(self):  # type () -> int
         """Return an integer that does not exist in the db."""
         i = 1
-        while self._db.contains(eids=[i]):
+        while self._db.contains(doc_id=[i]):
             i += 1
         return i
 
