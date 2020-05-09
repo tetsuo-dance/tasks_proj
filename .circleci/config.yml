@@ -27,7 +27,6 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-       #     pytest --junitxml=test-reports/junit.xml $(circleci tests glob tests/**/test_*.py | circleci tests split)
              pytest -vvl
       - store_test_results:
           path: test-reports
