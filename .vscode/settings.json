@@ -1,0 +1,18 @@
+{
+    "vsicons.presets.angular": true
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ]
+    "vim.useSystemClipboard": true
+    "editor.lineNumbers": "relative"
+    "vim.whichwrap": "h,l,<,>,[,]"
+    "editor.renderWhitespace": "all"
+}
