@@ -131,4 +131,4 @@ def get_urgent_task():
     filtered = [t for t in list_tasks() if not t.done]
     if not filtered:
         return None
-    return sorterd(filtered, key=lambda t: t.id)[0]
+    return sorted(filtered, key=lambda t: t.id)[0]
