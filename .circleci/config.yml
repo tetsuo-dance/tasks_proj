@@ -15,6 +15,7 @@ jobs:
           name: install dependencies
           command: |
             python3 -m venv venv
+						mkdir /home/circleci/tasks_db
             . venv/bin/activate
             pip install .
       - save_cache:
