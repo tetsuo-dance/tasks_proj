@@ -17,6 +17,7 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             mkdir ~/tasks_db/
+            touch ~/tasks_db/tasks_db.json
             pip install .
       - save_cache:
           paths:
