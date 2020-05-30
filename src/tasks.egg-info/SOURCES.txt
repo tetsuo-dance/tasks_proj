@@ -1,5 +1,6 @@
 LICENSE
 MANIFEST.in
+setup.py
 src/tasks/__init__.py
 src/tasks/api.py
 src/tasks/cli.py
@@ -18,7 +19,7 @@ tests/func/test_add.py
 tests/func/test_add_variety.py
 tests/func/test_add_variety2.py
 tests/func/test_api_exceptions.py
-tests/func/test_single.py
+tests/func/test_most_urgent.py
 tests/func/test_unique_id.py
 tests/unit/__init__.py
 tests/unit/test_cli.py
