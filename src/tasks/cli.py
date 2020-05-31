@@ -10,6 +10,7 @@ from tasks.api import Task
 
 # The main entry point for tasks.
 @click.group(context_settings={'help_option_names': ['-h', '--help']})
+#クリックにコマンドラインを登録する。addとかdeleteとかサブコマンドを登録していく。
 @click.version_option(version='0.1.1')
 def tasks_cli():
     """Run the tasks application."""
@@ -17,14 +18,18 @@ def tasks_cli():
 
 
 @tasks_cli.command(help="add a task")
+#＠は関数に対して外から機能を追加してる。
 @click.argument('summary')
 @click.option('-o', '--owner', default=None,
               help='set the task owner')
+#＠外から引数を与えられるようにしている。
 def add(summary, owner):
     """Add a task to db."""
     with _tasks_db():
+        #80行目のdb周りのセットアップをうける関数
         tasks.add(Task(summary, owner))
-
+        #api.pyにいく
+#defで決まったものが実行される
 
 @tasks_cli.command(help="delete a task")
 @click.argument('task_id', type=int)
@@ -35,6 +40,7 @@ def delete(task_id):
 
 
 @tasks_cli.command(name="list", help="list tasks")
+#　name=list で呼べる
 @click.option('-o', '--owner', default=None,
               help='list tasks with this owner')
 def list_tasks(owner):
@@ -80,9 +86,14 @@ def count():
 @contextmanager
 def _tasks_db():
     config = tasks.config.get_config()
+    #設定をひっぱってる→DBの場所、
+    #定義ジャンプする
     tasks.start_tasks_db(config.db_path, config.db_type)
+    #
     yield
+    #tasks_dbを呼び出した元に、呼び出し元に処理を戻す
     tasks.stop_tasks_db()
+
 
 
 if __name__ == '__main__':

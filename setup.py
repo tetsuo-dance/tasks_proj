@@ -19,7 +19,7 @@ setup(
     install_requires=['click', 'tinydb', 'six', 'pytest', 'pytest-mock'],
     tests_require=['pytest', 'pytest-mock'],
     extras_require={'mongo': 'pymongo'},
-
+    #一番初めに呼ばれる　エントリーポイント
     entry_points={
         'console_scripts': [
             'tasks = tasks.cli:tasks_cli',
