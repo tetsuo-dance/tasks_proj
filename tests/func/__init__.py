@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 """
 Avoid test file name collision.
 

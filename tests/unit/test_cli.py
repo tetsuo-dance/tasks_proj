@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 from click.testing import CliRunner
 from contextlib import contextmanager
 import pytest

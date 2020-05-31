@@ -1,4 +1,6 @@
+# -*- Coding: utf-8 -*-
 """Minimal Project Task Management."""
+
 
 from .api import (  # noqa: F401
     Task,

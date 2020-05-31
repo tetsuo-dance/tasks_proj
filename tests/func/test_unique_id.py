@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 """Test tasks.unique_id()."""
 
 import tasks

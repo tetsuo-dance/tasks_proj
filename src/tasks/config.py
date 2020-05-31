@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 """Handle configuration files for tasks CLI."""
 
 from collections import namedtuple

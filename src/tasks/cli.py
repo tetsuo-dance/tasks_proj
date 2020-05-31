@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 """Command Line Interface (CLI) for tasks project."""
 
 from __future__ import print_function

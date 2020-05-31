@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 """Database wrapper for MongoDB for tasks project."""
 
 import os
