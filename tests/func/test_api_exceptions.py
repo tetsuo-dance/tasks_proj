@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 """Test for expected exceptions from using the API wrong."""
 import pytest
 import tasks

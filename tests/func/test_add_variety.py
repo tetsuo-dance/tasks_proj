@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 """Test the tasks.add() API function."""
 
 import pytest

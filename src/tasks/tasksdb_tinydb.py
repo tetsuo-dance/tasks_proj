@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 """Database wrapper for TinyDB for tasks project."""
 import tinydb
 

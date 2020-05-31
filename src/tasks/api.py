@@ -1,3 +1,4 @@
+# -*- Coding: utf-8 -*-
 """Main API for tasks project."""
 
 from collections import namedtuple
