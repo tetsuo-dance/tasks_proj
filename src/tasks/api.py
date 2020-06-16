@@ -23,6 +23,7 @@ def add(task):  # type: (Task) -> int
     """Add a task (a Task object) to the tasks database."""
     if not isinstance(task, Task):
         raise TypeError('task must be Task object')
+        #エラーチェック
     if not isinstance(task.summary, string_types):
         raise ValueError('task.summary must be string')
     if not ((task.owner is None) or
@@ -35,6 +36,7 @@ def add(task):  # type: (Task) -> int
     if _tasksdb is None:
         raise UninitializedDatabase()
     task_id = _tasksdb.add(task._asdict())
+    #これ
     return task_id
 
 
@@ -82,12 +84,18 @@ def update(task_id, task):  # type: (int, Task) -> None
 
 def delete(task_id):  # type: (int) -> None
     """Remove a task from db with given task_id."""
+    print("deleeeet")
     if not isinstance(task_id, int):
         raise TypeError('task_id must be an int')
     if _tasksdb is None:
         raise UninitializedDatabase()
     _tasksdb.delete(task_id)
 
+def deletedone():  # type: (int) -> None
+    """Remove a task from db with given task_id."""
+    if _tasksdb is None:
+        raise UninitializedDatabase()
+    _tasksdb.deletedone()
 
 def delete_all():  # type: () -> None
     """Remove all tasks from db."""
@@ -101,6 +109,9 @@ def unique_id():  # type: () -> int
     if _tasksdb is None:
         raise UninitializedDatabase()
     return _tasksdb.unique_id()
+
+
+
 
 
 _tasksdb = None

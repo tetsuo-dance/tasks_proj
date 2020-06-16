@@ -38,6 +38,12 @@ def delete(task_id):
     with _tasks_db():
         tasks.delete(task_id)
 
+@tasks_cli.command(help="deletedone a task")
+def deletedone():
+    """Remove done task."""
+    with _tasks_db():
+        tasks.deletedone()
+
 
 @tasks_cli.command(name="list", help="list tasks")
 #　name=list で呼べる
@@ -81,6 +87,7 @@ def count():
     with _tasks_db():
         c = tasks.count()
         print(c)
+
 
 
 @contextmanager
