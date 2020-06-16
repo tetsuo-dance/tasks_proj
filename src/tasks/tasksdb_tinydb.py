@@ -34,8 +34,6 @@ class TasksDB_TinyDB():  # noqa : E801
         if owner is None:
             return self._db.all()
         else:
-            self._db.remove(tinydb.Query().done == 1)
-            print("list内で doneが1の物を消してみた")
             return self._db.search(tinydb.Query().owner == owner)
 
     def count(self):  # type () -> int
@@ -53,7 +51,7 @@ class TasksDB_TinyDB():  # noqa : E801
 
     def deletedone(self):
         """Remove a task from db with given task_id."""
-        print("delete done = 1 deleeeeet donedonedonedone")
+        print("delete done = 1 deletedone")
         self._db.remove(tinydb.Query().done == 1)
 
     def delete_all(self):

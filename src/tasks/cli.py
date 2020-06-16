@@ -18,11 +18,9 @@ def tasks_cli():
 
 
 @tasks_cli.command(help="add a task")
-#＠は関数に対して外から機能を追加してる。
 @click.argument('summary')
 @click.option('-o', '--owner', default=None,
               help='set the task owner')
-#＠外から引数を与えられるようにしている。
 def add(summary, owner):
     """Add a task to db."""
     with _tasks_db():
