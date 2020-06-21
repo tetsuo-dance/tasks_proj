@@ -45,7 +45,7 @@ def list_tasks(owner):
 
     If owner given, only list tasks with that owner.
     """
-    formatstr = "{: >4} {: >10} {: >5} {} {}"
+    formatstr = "{: >4} {: >10} {: >10} {: >5} {}"
     print(formatstr.format('ID', 'owner', 'deadline', 'done', 'summary'))
     print(formatstr.format('--', '-----', '--------', '----', '-------'))
     with _tasks_db():
