@@ -31,9 +31,9 @@ def tasks_db(tasks_db_session):
 def tasks_just_a_few():
     """All summaries and owners are unique."""
     return (
-        Task('Write some code', 'Brian', True),
-        Task("Code review Brian's code", 'Katie', False),
-        Task('Fix what Brian did', 'Michelle', False))
+        Task('Write some code', 'Brian', '2020-01-01', True),
+        Task("Code review Brian's code", 'Katie', '2020-01-01', False),
+        Task('Fix what Brian did', 'Michelle', '2020-01-01', False))
 
 
 @pytest.fixture()
@@ -65,13 +65,3 @@ def db_with_multi_per_owner(tasks_db, tasks_mult_per_owner):
     """Connected db with 9 tasks, 3 owners, all with 3 tasks."""
     for t in tasks_mult_per_owner:
         tasks.add(t)
-
-def pytest_report_header():
-    """Thank tester for running tests."""
-    return "Thanks for running the tests."
-
-
-def pytest_report_teststatus(report):
-    """Turn failures into opportunities."""
-    if report.when == 'call' and report.failed:
-        return (report.outcome, 'O', 'OPPORTUNITY for improvement')

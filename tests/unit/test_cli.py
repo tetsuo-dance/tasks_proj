@@ -29,28 +29,28 @@ def test_list_print_empty(no_db, mocker):
     mocker.patch.object(tasks.cli.tasks, 'list_tasks', return_value=[])
     runner = CliRunner()
     result = runner.invoke(tasks.cli.tasks_cli, ['list'])
-    expected_output = ("  ID      owner  done summary\n"
-                       "  --      -----  ---- -------\n")
+    expected_output = ("  ID      owner   deadline  done summary\n"
+                       "  --      -----   --------  ---- -------\n")
     assert result.output == expected_output
 
 
 def test_list_print_many_items(no_db, mocker):
     many_tasks = (
-        Task('write chapter', 'Brian', True, 1),
-        Task('edit chapter', 'Katie', False, 2),
-        Task('modify chapter', 'Brian', False, 3),
-        Task('finalize chapter', 'Katie', False, 4),
+        Task('write chapter', 'Brian', '2020-01-01', True, 1),
+        Task('edit chapter', 'Katie', '2020-01-01', False, 2),
+        Task('modify chapter', 'Brian', '2020-01-01', False, 3),
+        Task('finalize chapter', 'Katie', '2020-01-01', False, 4),
     )
     mocker.patch.object(tasks.cli.tasks, 'list_tasks',
                         return_value=many_tasks)
     runner = CliRunner()
     result = runner.invoke(tasks.cli.tasks_cli, ['list'])
-    expected_output = ("  ID      owner  done summary\n"
-                       "  --      -----  ---- -------\n"
-                       "   1      Brian  True write chapter\n"
-                       "   2      Katie False edit chapter\n"
-                       "   3      Brian False modify chapter\n"
-                       "   4      Katie False finalize chapter\n")
+    expected_output = ("  ID      owner   deadline  done summary\n"
+                       "  --      -----   --------  ---- -------\n"
+                       "   1      Brian 2020-01-01  True write chapter\n"
+                       "   2      Katie 2020-01-01 False edit chapter\n"
+                       "   3      Brian 2020-01-01 False modify chapter\n"
+                       "   4      Katie 2020-01-01 False finalize chapter\n")
     assert result.output == expected_output
 
 

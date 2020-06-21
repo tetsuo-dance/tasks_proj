@@ -129,10 +129,3 @@ def stop_tasks_db():  # type: () -> None
     global _tasksdb
     _tasksdb.stop_tasks_db()
     _tasksdb = None
-
-
-def get_urgent_task():
-    filtered = [t for t in list_tasks() if not t.done]
-    if not filtered:
-        return None
-    return sorted(filtered, key=lambda t: t.id)[0]
