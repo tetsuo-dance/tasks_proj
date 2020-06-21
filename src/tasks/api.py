@@ -6,8 +6,8 @@ from six import string_types
 
 
 # Task element types : [summary: str, owner: str, done: bool, id: int]
-Task = namedtuple('Task', ['summary', 'owner', 'done', 'id'])
-Task.__new__.__defaults__ = (None, None, False, None)
+Task = namedtuple('Task', ['summary', 'owner', 'deadline', 'done', 'id'])
+Task.__new__.__defaults__ = (None, None, None, False, None)
 
 
 # custom exceptions
@@ -28,6 +28,9 @@ def add(task):  # type: (Task) -> int
     if not ((task.owner is None) or
             isinstance(task.owner, string_types)):
         raise ValueError('task.owner must be string or None)')
+    if not ((task.deadline is None) or
+            isinstance(task.deadline, string_types)):
+        raise ValueError('task.deadline must be string or None)')
     if not isinstance(task.done, bool):
         raise ValueError('task.done must be True or False')
     if task.id is not None:
@@ -126,10 +129,3 @@ def stop_tasks_db():  # type: () -> None
     global _tasksdb
     _tasksdb.stop_tasks_db()
     _tasksdb = None
-
-
-def get_urgent_task():
-    filtered = [t for t in list_tasks() if not t.done]
-    if not filtered:
-        return None
-    return sorted(filtered, key=lambda t: t.id)[0]
