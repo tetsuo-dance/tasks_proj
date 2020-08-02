@@ -46,11 +46,19 @@ class TasksDB_TinyDB():  # noqa : E801
 
     def delete(self, task_id):  # type (int) -> ()
         """Remove a task from db with given task_id."""
+        print("delete 20-06-11")
         self._db.remove(doc_ids=[task_id])
+
+    def deletedone(self):
+        """Remove a task from db with given task_id."""
+        print("delete done = 1 deletedone")
+        self._db.remove(tinydb.Query().done == 1)
 
     def delete_all(self):
         """Remove all tasks from db."""
         self._db.truncate()
+
+
 
     def unique_id(self):  # type () -> int
         """Return an integer that does not exist in the db."""

@@ -12,6 +12,7 @@ from .api import (  # noqa: F401
     update,
     delete,
     delete_all,
+    deletedone,
     unique_id,
     start_tasks_db,
     stop_tasks_db
