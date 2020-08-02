@@ -13,7 +13,7 @@ from tasks.api import Task
 #クリックにコマンドラインを登録する。addとかdeleteとかサブコマンドを登録していく。
 @click.version_option(version='0.1.1')
 def tasks_cli():
-    """Run the tasks application."""
+    """Run the tasks application.(cahgened)"""
     pass
 
 
@@ -21,13 +21,13 @@ def tasks_cli():
 @click.argument('summary')
 @click.option('-o', '--owner', default=None,
               help='set the task owner')
-def add(summary, owner):
+@click.option('-dl', '--deadline', default=None,
+              help='set the deadline')
+def add(summary, owner, deadline):
     """Add a task to db."""
     with _tasks_db():
-        #80行目のdb周りのセットアップをうける関数
-        tasks.add(Task(summary, owner))
-        #api.pyにいく
-#defで決まったものが実行される
+
+        tasks.add(Task(summary, owner, deadline))
 
 @tasks_cli.command(help="delete a task")
 @click.argument('task_id', type=int)
@@ -53,15 +53,16 @@ def list_tasks(owner):
 
     If owner given, only list tasks with that owner.
     """
-    formatstr = "{: >4} {: >10} {: >5} {}"
-    print(formatstr.format('ID', 'owner', 'done', 'summary'))
-    print(formatstr.format('--', '-----', '----', '-------'))
+    formatstr = "{: >4} {: >10} {: >10} {: >5} {}"
+    print(formatstr.format('ID', 'owner', 'deadline', 'done', 'summary'))
+    print(formatstr.format('--', '-----', '--------', '----', '-------'))
     with _tasks_db():
         for t in tasks.list_tasks(owner):
             done = 'True' if t.done else 'False'
             owner = '' if t.owner is None else t.owner
+            deadline = '' if t.deadline is None else t.deadline
             print(formatstr.format(
-                  t.id, owner, done, t.summary))
+                  t.id, owner, deadline, done, t.summary))
 
 
 @tasks_cli.command(help="update task")
@@ -73,10 +74,12 @@ def list_tasks(owner):
 @click.option('-d', '--done', default=None,
               type=bool,
               help='change the task done state (True or False)')
-def update(task_id, owner, summary, done):
+@click.option('-dl', '--deadline', default=None,
+              help='change the deadline')
+def update(task_id, owner, summary, done, deadline):
     """Modify a task in db with given id with new info."""
     with _tasks_db():
-        tasks.update(task_id, Task(summary, owner, done))
+        tasks.update(task_id, Task(summary, owner, done, deadline))
 
 
 @tasks_cli.command(help="list count")
